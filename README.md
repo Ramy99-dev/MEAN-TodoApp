@@ -4,7 +4,8 @@ My first **MEAN APP** <br/><br/>
 - NodeJS .
 - ExpressJs .
 - For authorization i used JWT(JsonWebToken) .
-- Database : MongoDB .<br/><br/>
+- Database : MongoDB .
+
 ***Front End :***
 - Bootstrap .
 - Angular .
