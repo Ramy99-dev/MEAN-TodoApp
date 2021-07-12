@@ -1,10 +1,10 @@
 # MEAN-TodoApp
-My first **MEAN** App
+My first **MEAN APP** <br/><br/>
 ***Back End :***
 - NodeJS .
 - ExpressJs .
 - For authorization i used JWT(JsonWebToken) .
-- Database : MongoDB .<br/>
+- Database : MongoDB .<br/><br/>
 ***Front End :***
 - Bootstrap .
 - Angular .
