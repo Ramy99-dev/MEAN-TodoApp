@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+  <span id='welcome'> Hello {{user}} , </span> 
+  <div style="margin-top:43px">
+    <a href ="" (click)='logout($event)'>Logout</a>
+  </div> 
+
+</div>
+
+<div class="container mt-3 ">
+    <form [formGroup]="todoForm" (submit)='add()'>
+      <div class="d-flex justify-content-center">
+      <div class="form-row align-items-center">
+        <div class="col-auto">
+          <input [(ngModel)]="text" type="text" name="" id="" class="form-control" formControlName="act">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary"  [disabled]="!todoForm.valid"><i class="fas fa-plus-square"></i></button>
+          
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+    <div style="width:400px;" class='container mt-3'>
+      <div *ngFor="let todo of todos;  let index = index">
+        <div class="row">
+          <div  class='col-7'>
+            <p class="text" >{{todo.act}}</p>
+          </div>
+          <div  class='col-5'>
+            <button (click)='done(todo._id , index)' class='btn btn-warning'><i class="fas fa-check-square"></i></button>
+            <button (click)='delete(todo._id , index)' class='btn btn-danger'><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  
+  

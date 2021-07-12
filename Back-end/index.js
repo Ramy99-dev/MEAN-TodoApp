@@ -1,11 +1,22 @@
+require('dotenv').config();
 let express = require('express');
-let app = express();
-let mongoose = require('mongoose');
-let Todo = require('./models/todo')
-const bodyParser = require('body-parser');
+
+const app = express();
+//Route 
+const todoRoutes = require('./routes/todoRoutes')
+const userRoutes = require('./routes/userRoutes')
+
+const mongoose = require('mongoose');
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
+const cors = require('cors');
 
 
-const dbURI = 'mongodb+srv://rami:test123@cluster0.oq6ol.mongodb.net/todoDB?retryWrites=true&w=majority'
+app.use( express.urlencoded({ extended: true }) )
+app.use(cors({ origin:true, credentials:true }));
+//Connect to DB
+const dbURI = process.env.DATABASE
 mongoose.connect(dbURI,{useNewUrlParser:true ,useUnifiedTopology: true })
 .then((result)=>{
     app.listen(5050,()=>{
@@ -15,61 +26,29 @@ mongoose.connect(dbURI,{useNewUrlParser:true ,useUnifiedTopology: true })
 })
 .catch((err)=>console.log(err))
 
-app.use(bodyParser.json());
+
 app.use(express.urlencoded({extended:true}));
 app.all("/*", function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
   });
+//Routes
+app.use(todoRoutes)
+app.use(userRoutes)
 
 
 
-app.post('/add-todo',(req,res)=>{
 
-    console.log(req.body)
-   const todo = new Todo(req.body)
-   todo.save()
-   .then((result)=>{
-      res.send(result)
-   })
-   .catch((err)=>{
-       console.log(err)
-   })
-})
 
-app.get('/get-alltodo',(req , res)=>{
-    Todo.find()
-    .then((result)=>{
-        res.json(result)
-    })
-})
 
-app.get('/get-todo/:id',(req,res)=>{
-    Todo.findById(req.params.id)
-    .then((result)=>{
-        res.json(result)
-    });
-})
 
-app.delete('/delete-todo/:id',(req,res)=>{
-    console.log(req.params.id);
-    Todo.findOneAndDelete({_id:req.params.id})
-    .then((result)=>{
-        res.json(result)
-    })
-    .catch((err)=>{console.log(err)});
-    
-    
-})
-app.put('/update-todo/:id',(req,res)=>{
-    
-  var  todo =  Todo.findOneAndUpdate(req.params.id,req.body)
-  .then((result)=>res.send(result));
- 
- // res.send(todo);
-      
-      
+
+
+
+
+
+
   
-})

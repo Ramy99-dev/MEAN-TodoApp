@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 
 let todoSchema = new Schema(
 {
-    act : {type:String , required : true}
+    act : {type:String , required : true},
+    user : {type:String , required : true}
 }) 
 
 let Todo = mongoose.model('todo',todoSchema);
