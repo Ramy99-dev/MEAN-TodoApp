@@ -9,7 +9,7 @@ My first **MEAN APP** <br/><br/>
 - Bootstrap .
 - Angular .
 <br/><br/>
-**Demo : **
+**Demo:**
 ![](https://github.com/Ramy99-dev/MEAN-TodoApp/blob/main/20210712-185351.gif)
 
 
