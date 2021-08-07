@@ -16,7 +16,7 @@
 
 ## Description
 
-This my firts Todo MEAN app , this app will help organize your day activities .
+This is my first MEAN app , this app will help organize your day activities .
 
 #### Technologies
 - Front End : 
